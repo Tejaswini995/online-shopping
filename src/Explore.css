@@ -1,0 +1,254 @@
+.collection-page {
+  min-height: 100vh;
+  background: #f7f8f5;
+  animation: rise-in 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.collection-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: min(1180px, calc(100% - 48px));
+  height: 88px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e9e1;
+}
+
+.collection-back,
+.collection-logo {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.collection-back {
+  justify-self: start;
+  color: #536153;
+  font-weight: 700;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.collection-back:hover {
+  color: #17211b;
+  transform: translateX(-3px);
+}
+
+.collection-back span {
+  margin-right: 7px;
+}
+
+.collection-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #17211b;
+}
+
+.collection-header-note {
+  justify-self: end;
+  color: #7a847d;
+  font-size: 14px;
+}
+
+.collection-main {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 80px;
+}
+
+.collection-intro {
+  margin-bottom: 38px;
+  text-align: center;
+}
+
+.collection-intro .eyebrow {
+  margin-bottom: 12px;
+}
+
+.collection-intro h1 {
+  margin: 0;
+  color: #17211b;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
+
+.collection-intro > p:last-child {
+  margin: 14px auto 0;
+  color: #69746b;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  min-width: 0;
+  animation: rise-in 500ms both;
+}
+
+.product-card:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.product-card:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.product-card:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.product-art {
+  position: relative;
+  display: grid;
+  min-height: 310px;
+  overflow: hidden;
+  place-items: center;
+  border-radius: 18px;
+}
+
+.product-art--sand {
+  background: #e8dfd1;
+}
+
+.product-art--sage {
+  background: #dce5d4;
+}
+
+.product-art--clay {
+  background: #ead9d0;
+}
+
+.product-art--sky {
+  background: #dce6e8;
+}
+
+.product-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.product-card:hover .product-art img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 2px;
+}
+
+.product-info p {
+  margin: 0 0 6px;
+  color: #7a847d;
+  font-size: 13px;
+}
+
+.product-info h2 {
+  margin: 0;
+  color: #17211b;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.product-price {
+  color: #17211b;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.product-cost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.product-price-label {
+  color: #7a847d;
+  font-size: 11px;
+}
+
+.collection-back:focus-visible,
+.collection-logo:focus-visible {
+  outline: 3px solid #71845c;
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .collection-header,
+  .collection-main {
+    width: calc(100% - 28px);
+  }
+
+  .collection-header-note {
+    display: none;
+  }
+
+  .collection-back {
+    font-size: 13px;
+  }
+
+  .collection-logo {
+    gap: 7px;
+  }
+
+  .collection-logo .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .collection-logo .brand-wordmark {
+    font-size: 22px;
+  }
+
+  .collection-main {
+    padding-top: 44px;
+  }
+
+  .product-grid {
+    gap: 12px;
+  }
+
+  .product-art {
+    min-height: 220px;
+  }
+
+  .product-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-cost {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-page *,
+  .collection-page *::before,
+  .collection-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
