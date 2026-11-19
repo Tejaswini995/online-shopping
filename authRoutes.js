@@ -1,7 +1,7 @@
 const router=require('express').Router();
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
-const db=require('../config/db');
+const db=require('./db');
 router.post('/register',async(req,res)=>{try{
  const {name,email,password}=req.body;
  if(typeof name!=='string'||!name.trim()||typeof email!=='string'||!/^\S+@\S+\.\S+$/.test(email)||typeof password!=='string'||password.length<8)return res.status(400).json({message:'Valid name, email and 8+ character password required'});

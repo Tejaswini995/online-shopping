@@ -1,5 +1,5 @@
 require('dotenv').config();
-const db=require('./config/db');
+const db=require('./db');
 const products=[
  ['Wireless Headphones','Comfortable wireless headphones','Electronics',1499,20,'https://placehold.co/600x400?text=Headphones'],
  ['Backpack','Everyday backpack','Fashion',899,15,'https://placehold.co/600x400?text=Backpack'],

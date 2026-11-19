@@ -1,6 +1,6 @@
 const router=require('express').Router();
-const db=require('../config/db');
-const auth=require('../middleware/auth');
+const db=require('./db');
+const auth=require('./auth');
 router.use(auth);
 const view=o=>({...o,_id:String(o.id),total:Number(o.total)});
 router.get('/my',async(req,res)=>{try{const [rows]=await db.execute('SELECT id,address,total,status,created_at FROM orders WHERE user_id=? ORDER BY created_at DESC,id DESC',[req.user.id]);res.json(rows.map(view))}catch{res.status(500).json({message:'Unable to fetch orders'})}});
