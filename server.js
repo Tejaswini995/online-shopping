@@ -1,0 +1,15 @@
+require('dotenv').config();
+const express=require('express');
+const cors=require('cors');
+const axios=require('axios');
+const db=require('./config/db');
+const app=express();
+app.use(cors({origin:'http://localhost:5173'}));
+app.use(express.json());
+app.use('/api/auth',require('./routes/authRoutes'));
+app.use('/api/products',require('./routes/productRoutes'));
+app.use('/api/orders',require('./routes/orderRoutes'));
+app.get('/api/health',(_,res)=>res.json({ok:true}));
+app.get('/api/recommendations',async(req,res)=>{try{const {data}=await axios.get((process.env.PYTHON_URL||'http://localhost:8000')+'/recommendations',{params:req.query});res.json(data)}catch{res.status(502).json({message:'Python service unavailable'})}});
+const port=process.env.PORT||5000;
+db.query('SELECT 1').then(()=>app.listen(port,()=>console.log('Backend on '+port))).catch(e=>{console.error('MySQL connection failed:',e.message);process.exit(1)});
